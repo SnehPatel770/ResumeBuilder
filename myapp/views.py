@@ -7,10 +7,13 @@ genai.configure(api_key="AIzaSyCWp3sMwUR0NNIF80pPkW3xlmz8mEQj2_A")
 def home(request):
     return render(request, 'home.html')
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
 def page(request):
     return render(request, 'page.html')
 =======
+=======
+>>>>>>> Stashed changes
 
 def generate_resume(request):
     if request.method == 'POST':
@@ -24,4 +27,7 @@ def generate_resume(request):
         
         return render(request, 'resume.html', {'plain_text': response.text})
     return render(request, 'home.html')
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

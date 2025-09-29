@@ -10,4 +10,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('generate_resume/', views.generate_resume, name='generate_resume'),
 ]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
