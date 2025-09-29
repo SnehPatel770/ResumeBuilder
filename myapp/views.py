@@ -2,7 +2,7 @@ from django.shortcuts import render
 import google.generativeai as genai
 
 # Configure the Gemini API
-genai.configure(api_key="AIzaSyCWp3sMwUR0NNIF80pPkW3xlmz8mEQj2_A")
+genai.configure(api_key="")
 
 def home(request):
     return render(request, 'home.html')
