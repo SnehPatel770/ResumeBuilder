@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from './auth/AuthContext';
 
 const defaultResume = {
   personal: {
@@ -41,6 +42,7 @@ const defaultResume = {
 };
 
 const EditorPage = () => {
+  const { logout } = useAuth();
   const [resume, setResume] = useState(() => {
     try {
       const saved = localStorage.getItem('resume');
@@ -89,106 +91,116 @@ const EditorPage = () => {
   };
 
   const resetResume = () => {
-    if (confirm('Reset resume to defaults?')) {
+    if (window.confirm('Reset resume to defaults?')) {
       setResume(defaultResume);
       localStorage.removeItem('resume');
     }
   };
 
   return (
-    <div style={{ display: 'flex', gap: 24, padding: 24, color: '#111', height: '100vh', boxSizing: 'border-box' }}>
-      <div style={{ flex: 1, overflowY: 'auto', padding: 16, background: '#f7f7f7', borderRadius: 8 }}>
-        <h2>Editor</h2>
+    <div className="flex flex-col lg:flex-row gap-6 p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+      {/* Editor Panel */}
+      <div className="flex-1 overflow-y-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Editor</h2>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Personal</h3>
-          <input style={{ width: '100%', marginBottom: 8 }} value={resume.personal.name} onChange={e => updatePersonal('name', e.target.value)} placeholder="Full name" />
-          <input style={{ width: '100%', marginBottom: 8 }} value={resume.personal.title} onChange={e => updatePersonal('title', e.target.value)} placeholder="Title" />
-          <input style={{ width: '100%', marginBottom: 8 }} value={resume.personal.email} onChange={e => updatePersonal('email', e.target.value)} placeholder="Email" />
-          <input style={{ width: '100%', marginBottom: 8 }} value={resume.personal.phone} onChange={e => updatePersonal('phone', e.target.value)} placeholder="Phone" />
-          <input style={{ width: '100%' }} value={resume.personal.location} onChange={e => updatePersonal('location', e.target.value)} placeholder="Location" />
+        <section className="mb-8 relative">
+          <button onClick={logout} className="btn-secondary absolute top-0 right-0 -mt-2">
+            Logout
+          </button>
+          <h3 className="text-xl font-semibold mb-4">Personal</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input className="form-input" value={resume.personal.name} onChange={e => updatePersonal('name', e.target.value)} placeholder="Full name" />
+            <input className="form-input" value={resume.personal.title} onChange={e => updatePersonal('title', e.target.value)} placeholder="Title" />
+            <input className="form-input" value={resume.personal.email} onChange={e => updatePersonal('email', e.target.value)} placeholder="Email" />
+            <input className="form-input" value={resume.personal.phone} onChange={e => updatePersonal('phone', e.target.value)} placeholder="Phone" />
+            <input className="form-input sm:col-span-2" value={resume.personal.location} onChange={e => updatePersonal('location', e.target.value)} placeholder="Location" />
+          </div>
         </section>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Summary</h3>
-          <textarea style={{ width: '100%' }} value={resume.summary} onChange={e => updateSimple('summary', e.target.value)} rows={4} />
+        <section className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Summary</h3>
+          <textarea className="form-input" value={resume.summary} onChange={e => updateSimple('summary', e.target.value)} rows={4} />
         </section>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Experience</h3>
+        <section className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Experience</h3>
           {resume.experience.map((exp, i) => (
-            <div key={exp.id} style={{ border: '1px solid #ddd', padding: 8, marginBottom: 8, borderRadius: 6 }}>
-              <input style={{ width: '48%', marginRight: '4%' }} value={exp.role} onChange={e => updateField('experience', i, 'role', e.target.value)} placeholder="Role" />
-              <input style={{ width: '48%' }} value={exp.company} onChange={e => updateField('experience', i, 'company', e.target.value)} placeholder="Company" />
-              <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                <input style={{ flex: 1 }} value={exp.start} onChange={e => updateField('experience', i, 'start', e.target.value)} placeholder="Start (YYYY-MM)" />
-                <input style={{ flex: 1 }} value={exp.end} onChange={e => updateField('experience', i, 'end', e.target.value)} placeholder="End or Present" />
+            <div key={exp.id} className="form-section">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input className="form-input" value={exp.role} onChange={e => updateField('experience', i, 'role', e.target.value)} placeholder="Role" />
+                <input className="form-input" value={exp.company} onChange={e => updateField('experience', i, 'company', e.target.value)} placeholder="Company" />
+                <input className="form-input" value={exp.start} onChange={e => updateField('experience', i, 'start', e.target.value)} placeholder="Start (YYYY-MM)" />
+                <input className="form-input" value={exp.end} onChange={e => updateField('experience', i, 'end', e.target.value)} placeholder="End or Present" />
               </div>
-              <textarea style={{ width: '100%', marginTop: 8 }} value={exp.description} onChange={e => updateField('experience', i, 'description', e.target.value)} rows={3} placeholder="Description" />
-              <div style={{ textAlign: 'right', marginTop: 6 }}>
-                <button onClick={() => removeItem('experience', i)}>Remove</button>
+              <textarea className="form-input mt-4" value={exp.description} onChange={e => updateField('experience', i, 'description', e.target.value)} rows={3} placeholder="Description" />
+              <div className="text-right mt-2">
+                <button className="btn-danger" onClick={() => removeItem('experience', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button onClick={() => addItem('experience', { role: '', company: '', start: '', end: '', description: '' })}>Add Experience</button>
+          <button className="btn-primary" onClick={() => addItem('experience', { role: '', company: '', start: '', end: '', description: '' })}>Add Experience</button>
         </section>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Education</h3>
+        <section className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Education</h3>
           {resume.education.map((edu, i) => (
-            <div key={edu.id} style={{ border: '1px solid #ddd', padding: 8, marginBottom: 8, borderRadius: 6 }}>
-              <input style={{ width: '100%', marginBottom: 6 }} value={edu.school} onChange={e => updateField('education', i, 'school', e.target.value)} placeholder="School" />
-              <input style={{ width: '100%', marginBottom: 6 }} value={edu.degree} onChange={e => updateField('education', i, 'degree', e.target.value)} placeholder="Degree" />
-              <div style={{ display: 'flex', gap: 8 }}>
-                <input style={{ flex: 1 }} value={edu.start} onChange={e => updateField('education', i, 'start', e.target.value)} placeholder="Start" />
-                <input style={{ flex: 1 }} value={edu.end} onChange={e => updateField('education', i, 'end', e.target.value)} placeholder="End" />
+            <div key={edu.id} className="form-section">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input className="form-input sm:col-span-2" value={edu.school} onChange={e => updateField('education', i, 'school', e.target.value)} placeholder="School" />
+                <input className="form-input sm:col-span-2" value={edu.degree} onChange={e => updateField('education', i, 'degree', e.target.value)} placeholder="Degree" />
+                <input className="form-input" value={edu.start} onChange={e => updateField('education', i, 'start', e.target.value)} placeholder="Start Year" />
+                <input className="form-input" value={edu.end} onChange={e => updateField('education', i, 'end', e.target.value)} placeholder="End Year" />
               </div>
-              <textarea style={{ width: '100%', marginTop: 8 }} value={edu.details} onChange={e => updateField('education', i, 'details', e.target.value)} rows={2} placeholder="Details" />
-              <div style={{ textAlign: 'right', marginTop: 6 }}>
-                <button onClick={() => removeItem('education', i)}>Remove</button>
+              <textarea className="form-input mt-4" value={edu.details} onChange={e => updateField('education', i, 'details', e.target.value)} rows={2} placeholder="Details (e.g., GPA, Honors)" />
+              <div className="text-right mt-2">
+                <button className="btn-danger" onClick={() => removeItem('education', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button onClick={() => addItem('education', { school: '', degree: '', start: '', end: '', details: '' })}>Add Education</button>
+          <button className="btn-primary" onClick={() => addItem('education', { school: '', degree: '', start: '', end: '', details: '' })}>Add Education</button>
         </section>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Skills</h3>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        <section className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Skills</h3>
+          <div className="mb-4">
             <SkillInput onAdd={addSkill} />
           </div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <div className="flex gap-2 flex-wrap">
             {resume.skills.map((s, i) => (
-              <div key={s + i} style={{ background: '#e6e6e6', padding: '6px 8px', borderRadius: 20 }}>
-                {s} <button style={{ marginLeft: 8 }} onClick={() => removeSkill(i)}>x</button>
+              <div key={s + i} className="flex items-center bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-sm font-medium px-3 py-1 rounded-full">
+                {s}
+                <button className="ml-2 text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-100" onClick={() => removeSkill(i)}>&times;</button>
               </div>
             ))}
           </div>
         </section>
 
-        <section style={{ marginBottom: 16 }}>
-          <h3>Projects</h3>
+        <section className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Projects</h3>
           {resume.projects.map((p, i) => (
-            <div key={p.id} style={{ border: '1px solid #ddd', padding: 8, marginBottom: 8, borderRadius: 6 }}>
-              <input style={{ width: '100%', marginBottom: 6 }} value={p.name} onChange={e => updateField('projects', i, 'name', e.target.value)} placeholder="Project name" />
-              <input style={{ width: '100%', marginBottom: 6 }} value={p.link} onChange={e => updateField('projects', i, 'link', e.target.value)} placeholder="Link (optional)" />
-              <textarea style={{ width: '100%' }} value={p.description} onChange={e => updateField('projects', i, 'description', e.target.value)} rows={2} placeholder="Description" />
-              <div style={{ textAlign: 'right', marginTop: 6 }}>
-                <button onClick={() => removeItem('projects', i)}>Remove</button>
+            <div key={p.id} className="form-section">
+              <div className="grid grid-cols-1 gap-4">
+                <input className="form-input" value={p.name} onChange={e => updateField('projects', i, 'name', e.target.value)} placeholder="Project name" />
+                <input className="form-input" value={p.link} onChange={e => updateField('projects', i, 'link', e.target.value)} placeholder="Link (optional)" />
+                <textarea className="form-input" value={p.description} onChange={e => updateField('projects', i, 'description', e.target.value)} rows={2} placeholder="Description" />
+              </div>
+              <div className="text-right mt-2">
+                <button className="btn-danger" onClick={() => removeItem('projects', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button onClick={() => addItem('projects', { name: '', link: '', description: '' })}>Add Project</button>
+          <button className="btn-primary" onClick={() => addItem('projects', { name: '', link: '', description: '' })}>Add Project</button>
         </section>
 
-        <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-          <button onClick={exportJSON}>Export JSON</button>
-          <button onClick={() => window.print()}>Print / Save PDF</button>
-          <button onClick={resetResume}>Reset</button>
+        <div className="flex flex-wrap gap-4 mt-6 border-t pt-6 border-gray-200 dark:border-gray-700">
+          <button className="btn-secondary" onClick={exportJSON}>Export JSON</button>
+          <button className="btn-secondary" onClick={() => window.print()}>Print / Save PDF</button>
+          <button className="btn-danger" onClick={resetResume}>Reset</button>
         </div>
       </div>
 
-      <div style={{ width: 420, overflowY: 'auto', padding: 16, background: '#fff', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+      {/* Preview Panel */}
+      <div className="lg:w-[420px] lg:flex-shrink-0 overflow-y-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <ResumePreview data={resume} />
       </div>
     </div>
@@ -198,9 +210,9 @@ const EditorPage = () => {
 const SkillInput = ({ onAdd }) => {
   const [val, setVal] = useState('');
   return (
-    <form onSubmit={e => { e.preventDefault(); onAdd(val.trim()); setVal(''); }} style={{ display: 'flex', gap: 8, width: '100%' }}>
-      <input style={{ flex: 1 }} value={val} onChange={e => setVal(e.target.value)} placeholder="Add skill and press Enter" />
-      <button type="submit">Add</button>
+    <form onSubmit={e => { e.preventDefault(); onAdd(val.trim()); setVal(''); }} className="flex gap-2 w-full">
+      <input className="form-input flex-1" value={val} onChange={e => setVal(e.target.value)} placeholder="Add skill and press Enter" />
+      <button type="submit" className="btn-primary">Add</button>
     </form>
   );
 };
@@ -208,53 +220,60 @@ const SkillInput = ({ onAdd }) => {
 const ResumePreview = ({ data }) => {
   const { personal, summary, experience, education, skills, projects } = data;
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', color: '#111' }}>
-      <header style={{ borderBottom: '1px solid #ddd', paddingBottom: 8, marginBottom: 12 }}>
-        <h1 style={{ margin: 0 }}>{personal.name}</h1>
-        <div style={{ color: '#666' }}>{personal.title} — {personal.location}</div>
-        <div style={{ color: '#666' }}>{personal.email} {personal.phone ? `• ${personal.phone}` : ''}</div>
+    <div className="font-sans text-sm text-gray-800 dark:text-gray-200">
+      <header className="text-center border-b border-gray-300 dark:border-gray-600 pb-2 mb-4">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{personal.name}</h1>
+        <div className="text-md text-gray-600 dark:text-gray-400">{personal.title} {personal.location && `— ${personal.location}`}</div>
+        <div className="text-sm text-gray-500 dark:text-gray-400">{personal.email} {personal.phone && `• ${personal.phone}`}</div>
       </header>
 
-      <section style={{ marginBottom: 12 }}>
-        <h3 style={{ margin: '6px 0' }}>Summary</h3>
-        <p style={{ margin: 0 }}>{summary}</p>
+      <section className="mb-4">
+        <h3 className="preview-heading">Summary</h3>
+        <p className="text-gray-700 dark:text-gray-300">{summary}</p>
       </section>
 
-      <section style={{ marginBottom: 12 }}>
-        <h3 style={{ margin: '6px 0' }}>Experience</h3>
+      <section className="mb-4">
+        <h3 className="preview-heading">Experience</h3>
         {experience.map(e => (
-          <div key={e.id} style={{ marginBottom: 8 }}>
-            <strong>{e.role}</strong> — <em>{e.company}</em>
-            <div style={{ color: '#666' }}>{e.start} • {e.end}</div>
-            <div>{e.description}</div>
+          <div key={e.id} className="mb-3">
+            <div className="flex justify-between">
+              <strong className="font-semibold text-gray-800 dark:text-gray-100">{e.role}</strong>
+              <span className="text-gray-600 dark:text-gray-400">{e.start} - {e.end}</span>
+            </div>
+            <em className="text-gray-600 dark:text-gray-400">{e.company}</em>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">{e.description}</p>
           </div>
         ))}
       </section>
 
-      <section style={{ marginBottom: 12 }}>
-        <h3 style={{ margin: '6px 0' }}>Education</h3>
+      <section className="mb-4">
+        <h3 className="preview-heading">Education</h3>
         {education.map(e => (
-          <div key={e.id} style={{ marginBottom: 8 }}>
-            <strong>{e.school}</strong> — {e.degree}
-            <div style={{ color: '#666' }}>{e.start} • {e.end}</div>
-            <div>{e.details}</div>
+          <div key={e.id} className="mb-3">
+            <div className="flex justify-between">
+              <strong className="font-semibold text-gray-800 dark:text-gray-100">{e.school}</strong>
+              <span className="text-gray-600 dark:text-gray-400">{e.start} - {e.end}</span>
+            </div>
+            <em className="text-gray-600 dark:text-gray-400">{e.degree}</em>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">{e.details}</p>
           </div>
         ))}
       </section>
 
-      <section style={{ marginBottom: 12 }}>
-        <h3 style={{ margin: '6px 0' }}>Skills</h3>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {skills.map((s, i) => <span key={s + i} style={{ background: '#f0f0f0', padding: '4px 8px', borderRadius: 12 }}>{s}</span>)}
+      <section className="mb-4">
+        <h3 className="preview-heading">Skills</h3>
+        <div className="flex gap-2 flex-wrap">
+          {skills.map((s, i) => <span key={s + i} className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">{s}</span>)}
         </div>
       </section>
 
       <section>
-        <h3 style={{ margin: '6px 0' }}>Projects</h3>
+        <h3 className="preview-heading">Projects</h3>
         {projects.map(p => (
-          <div key={p.id} style={{ marginBottom: 8 }}>
-            <strong>{p.name}</strong>{p.link ? <a href={p.link} style={{ marginLeft: 8 }} target="_blank" rel="noreferrer">link</a> : null}
-            <div>{p.description}</div>
+          <div key={p.id} className="mb-3">
+            <strong className="font-semibold text-gray-800 dark:text-gray-100">{p.name}</strong>
+            {p.link && <a href={p.link} className="text-blue-500 hover:underline ml-2" target="_blank" rel="noreferrer">Link</a>}
+            <p className="text-gray-700 dark:text-gray-300 mt-1">{p.description}</p>
           </div>
         ))}
       </section>
