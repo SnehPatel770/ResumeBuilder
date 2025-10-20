@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Inter font for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for dark theme */
+body {
+  @apply bg-gray-900 text-gray-100 transition-colors duration-300;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom component classes with modern styling */
+.btn {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed shadow-lg hover:shadow-xl;
+}
+
+.btn-primary:not(:disabled) {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600 disabled:bg-red-400 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply bg-gray-700 text-gray-200 hover:bg-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+}
+
+/* Auth page styles with modern dark theme */
+.auth-card {
+  @apply p-8 bg-gray-800 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 backdrop-blur-sm;
+}
+
+.auth-label {
+  @apply block mb-2 text-sm font-medium text-gray-300;
+}
+
+.auth-input {
+  @apply w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-gray-100 placeholder-gray-400;
+}
+
+.auth-icon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400;
+}
+
+.auth-error {
+  @apply text-sm text-red-400 bg-red-900/30 p-3 rounded-lg border border-red-800;
+}
+
+.auth-divider {
+  @apply relative my-6 flex items-center;
+}
+.auth-divider::before, .auth-divider::after {
+  @apply content-[''] flex-grow border-b border-gray-600;
+}
+.auth-divider span {
+  @apply mx-4 text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+/* Google Login Button Styling */
+.google-login-container {
+  @apply w-full;
+}
+
+.google-login-container > div {
+  @apply w-full;
+}
+
+.google-login-container button {
+  @apply w-full !important bg-gray-700 hover:bg-gray-600 border-gray-600 text-gray-300;
+}
+
+/* Auth Layout with gradient background */
+.auth-layout-branding {
+  @apply bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white;
+}
+
+.auth-layout-branding h1 {
+  @apply text-6xl font-bold mb-4 drop-shadow-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent;
+}
+
+.auth-layout-branding p {
+  @apply text-xl text-gray-300;
+}
