@@ -1,21 +1,28 @@
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const AuthLayout = ({ children }) => {
-  return (
-    <div className="min-h-screen lg:grid lg:grid-cols-2 bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900">
-      {/* Form Section */}
-      <div className="flex flex-col items-center justify-center p-6 sm:p-12">
-        {children}
-      </div>
+  const { theme, toggleTheme } = useTheme();
 
-      {/* Branding/Image Section (visible on large screens) */}
-      <div className="hidden lg:flex flex-col items-center justify-center auth-layout-branding p-12 text-center">
-        <h1 className="text-6xl font-bold mb-4 drop-shadow-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-          ResumeBuilder
-        </h1>
-        <p className="text-xl text-gray-300">
-          Craft your professional story, effortlessly.
-        </p>
+  return (
+    <div className="auth-page-bg flex flex-col">
+      {/* Header */}
+      <header className="flex justify-between items-center p-4 bg-transparent relative z-10">
+        <h1 className="text-2xl font-bold text-white">Resume Builder</h1>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </header>
+
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="w-full max-w-md">
+          {children}
+        </div>
       </div>
     </div>
   );

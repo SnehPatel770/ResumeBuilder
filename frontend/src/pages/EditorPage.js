@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const defaultResume = {
   personal: {
@@ -43,6 +44,7 @@ const defaultResume = {
 
 const EditorPage = () => {
   const { logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [resume, setResume] = useState(() => {
     try {
       const saved = localStorage.getItem('resume');
@@ -98,13 +100,24 @@ const EditorPage = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+    <div className="editor-bg flex flex-col lg:flex-row gap-6 p-6">
+      {/* Theme Toggle */}
+      <div className="fixed top-4 right-4 z-10">
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </div>
+
       {/* Editor Panel */}
-      <div className="flex-1 overflow-y-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Editor</h2>
+      <div className="editor-panel flex-1 overflow-y-auto">
+        <h2 className="text-2xl font-bold mb-6 border-b pb-2 border-white/20">Editor</h2>
 
         <section className="mb-8 relative">
-          <button onClick={logout} className="btn-secondary absolute top-0 right-0 -mt-2">
+          <button onClick={logout} className="absolute top-0 right-0 -mt-2 p-2 rounded-lg bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors">
             Logout
           </button>
           <h3 className="text-xl font-semibold mb-4">Personal</h3>
@@ -134,11 +147,11 @@ const EditorPage = () => {
               </div>
               <textarea className="form-input mt-4" value={exp.description} onChange={e => updateField('experience', i, 'description', e.target.value)} rows={3} placeholder="Description" />
               <div className="text-right mt-2">
-                <button className="btn-danger" onClick={() => removeItem('experience', i)}>Remove</button>
+                <button className="p-2 rounded-lg bg-red-500/20 backdrop-blur-sm text-red-300 hover:bg-red-500/30 transition-colors" onClick={() => removeItem('experience', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button className="btn-primary" onClick={() => addItem('experience', { role: '', company: '', start: '', end: '', description: '' })}>Add Experience</button>
+          <button className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-colors" onClick={() => addItem('experience', { role: '', company: '', start: '', end: '', description: '' })}>Add Experience</button>
         </section>
 
         <section className="mb-8">
@@ -153,11 +166,11 @@ const EditorPage = () => {
               </div>
               <textarea className="form-input mt-4" value={edu.details} onChange={e => updateField('education', i, 'details', e.target.value)} rows={2} placeholder="Details (e.g., GPA, Honors)" />
               <div className="text-right mt-2">
-                <button className="btn-danger" onClick={() => removeItem('education', i)}>Remove</button>
+                <button className="p-2 rounded-lg bg-red-500/20 backdrop-blur-sm text-red-300 hover:bg-red-500/30 transition-colors" onClick={() => removeItem('education', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button className="btn-primary" onClick={() => addItem('education', { school: '', degree: '', start: '', end: '', details: '' })}>Add Education</button>
+          <button className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-colors" onClick={() => addItem('education', { school: '', degree: '', start: '', end: '', details: '' })}>Add Education</button>
         </section>
 
         <section className="mb-8">
@@ -167,9 +180,9 @@ const EditorPage = () => {
           </div>
           <div className="flex gap-2 flex-wrap">
             {resume.skills.map((s, i) => (
-              <div key={s + i} className="flex items-center bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-sm font-medium px-3 py-1 rounded-full">
+              <div key={s + i} className="flex items-center bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full">
                 {s}
-                <button className="ml-2 text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-100" onClick={() => removeSkill(i)}>&times;</button>
+                <button className="ml-2 text-red-300 hover:text-red-100" onClick={() => removeSkill(i)}>&times;</button>
               </div>
             ))}
           </div>
@@ -185,22 +198,22 @@ const EditorPage = () => {
                 <textarea className="form-input" value={p.description} onChange={e => updateField('projects', i, 'description', e.target.value)} rows={2} placeholder="Description" />
               </div>
               <div className="text-right mt-2">
-                <button className="btn-danger" onClick={() => removeItem('projects', i)}>Remove</button>
+                <button className="p-2 rounded-lg bg-red-500/20 backdrop-blur-sm text-red-300 hover:bg-red-500/30 transition-colors" onClick={() => removeItem('projects', i)}>Remove</button>
               </div>
             </div>
           ))}
-          <button className="btn-primary" onClick={() => addItem('projects', { name: '', link: '', description: '' })}>Add Project</button>
+          <button className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-colors" onClick={() => addItem('projects', { name: '', link: '', description: '' })}>Add Project</button>
         </section>
 
-        <div className="flex flex-wrap gap-4 mt-6 border-t pt-6 border-gray-200 dark:border-gray-700">
-          <button className="btn-secondary" onClick={exportJSON}>Export JSON</button>
-          <button className="btn-secondary" onClick={() => window.print()}>Print / Save PDF</button>
-          <button className="btn-danger" onClick={resetResume}>Reset</button>
+        <div className="flex flex-wrap gap-4 mt-6 border-t pt-6 border-white/20">
+          <button className="p-2 rounded-lg bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors" onClick={exportJSON}>Export JSON</button>
+          <button className="p-2 rounded-lg bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors" onClick={() => window.print()}>Print / Save PDF</button>
+          <button className="p-2 rounded-lg bg-red-500/20 backdrop-blur-sm text-red-300 hover:bg-red-500/30 transition-colors" onClick={resetResume}>Reset</button>
         </div>
       </div>
 
       {/* Preview Panel */}
-      <div className="lg:w-[420px] lg:flex-shrink-0 overflow-y-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <div className="editor-panel lg:w-[420px] lg:flex-shrink-0 overflow-y-auto">
         <ResumePreview data={resume} />
       </div>
     </div>
@@ -212,7 +225,7 @@ const SkillInput = ({ onAdd }) => {
   return (
     <form onSubmit={e => { e.preventDefault(); onAdd(val.trim()); setVal(''); }} className="flex gap-2 w-full">
       <input className="form-input flex-1" value={val} onChange={e => setVal(e.target.value)} placeholder="Add skill and press Enter" />
-      <button type="submit" className="btn-primary">Add</button>
+      <button type="submit" className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-colors">Add</button>
     </form>
   );
 };
@@ -220,16 +233,16 @@ const SkillInput = ({ onAdd }) => {
 const ResumePreview = ({ data }) => {
   const { personal, summary, experience, education, skills, projects } = data;
   return (
-    <div className="font-sans text-sm text-gray-800 dark:text-gray-200">
-      <header className="text-center border-b border-gray-300 dark:border-gray-600 pb-2 mb-4">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{personal.name}</h1>
-        <div className="text-md text-gray-600 dark:text-gray-400">{personal.title} {personal.location && `— ${personal.location}`}</div>
-        <div className="text-sm text-gray-500 dark:text-gray-400">{personal.email} {personal.phone && `• ${personal.phone}`}</div>
+    <div className="font-sans text-sm text-white">
+      <header className="text-center border-b border-white/20 pb-2 mb-4">
+        <h1 className="text-3xl font-bold">{personal.name}</h1>
+        <div className="text-md text-white/80">{personal.title} {personal.location && `— ${personal.location}`}</div>
+        <div className="text-sm text-white/60">{personal.email} {personal.phone && `• ${personal.phone}`}</div>
       </header>
 
       <section className="mb-4">
         <h3 className="preview-heading">Summary</h3>
-        <p className="text-gray-700 dark:text-gray-300">{summary}</p>
+        <p className="text-white/90">{summary}</p>
       </section>
 
       <section className="mb-4">
@@ -237,11 +250,11 @@ const ResumePreview = ({ data }) => {
         {experience.map(e => (
           <div key={e.id} className="mb-3">
             <div className="flex justify-between">
-              <strong className="font-semibold text-gray-800 dark:text-gray-100">{e.role}</strong>
-              <span className="text-gray-600 dark:text-gray-400">{e.start} - {e.end}</span>
+              <strong className="font-semibold">{e.role}</strong>
+              <span className="text-white/80">{e.start} - {e.end}</span>
             </div>
-            <em className="text-gray-600 dark:text-gray-400">{e.company}</em>
-            <p className="text-gray-700 dark:text-gray-300 mt-1">{e.description}</p>
+            <em className="text-white/80">{e.company}</em>
+            <p className="text-white/90 mt-1">{e.description}</p>
           </div>
         ))}
       </section>
@@ -251,11 +264,11 @@ const ResumePreview = ({ data }) => {
         {education.map(e => (
           <div key={e.id} className="mb-3">
             <div className="flex justify-between">
-              <strong className="font-semibold text-gray-800 dark:text-gray-100">{e.school}</strong>
-              <span className="text-gray-600 dark:text-gray-400">{e.start} - {e.end}</span>
+              <strong className="font-semibold">{e.school}</strong>
+              <span className="text-white/80">{e.start} - {e.end}</span>
             </div>
-            <em className="text-gray-600 dark:text-gray-400">{e.degree}</em>
-            <p className="text-gray-700 dark:text-gray-300 mt-1">{e.details}</p>
+            <em className="text-white/80">{e.degree}</em>
+            <p className="text-white/90 mt-1">{e.details}</p>
           </div>
         ))}
       </section>
@@ -263,7 +276,7 @@ const ResumePreview = ({ data }) => {
       <section className="mb-4">
         <h3 className="preview-heading">Skills</h3>
         <div className="flex gap-2 flex-wrap">
-          {skills.map((s, i) => <span key={s + i} className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">{s}</span>)}
+          {skills.map((s, i) => <span key={s + i} className="bg-white/20 px-3 py-1 rounded-full text-sm">{s}</span>)}
         </div>
       </section>
 
@@ -271,9 +284,9 @@ const ResumePreview = ({ data }) => {
         <h3 className="preview-heading">Projects</h3>
         {projects.map(p => (
           <div key={p.id} className="mb-3">
-            <strong className="font-semibold text-gray-800 dark:text-gray-100">{p.name}</strong>
-            {p.link && <a href={p.link} className="text-blue-500 hover:underline ml-2" target="_blank" rel="noreferrer">Link</a>}
-            <p className="text-gray-700 dark:text-gray-300 mt-1">{p.description}</p>
+            <strong className="font-semibold">{p.name}</strong>
+            {p.link && <a href={p.link} className="text-blue-300 hover:underline ml-2" target="_blank" rel="noreferrer">Link</a>}
+            <p className="text-white/90 mt-1">{p.description}</p>
           </div>
         ))}
       </section>

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           // Verify token with the backend
-          const response = await fetch('/api/auth/me', {
+          const response = await fetch('http://localhost:8000/api/auth/me/', {
             headers: { 'Authorization': `Bearer ${token}` }
           });
 
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   // Mock login function that simulates an API call
   const login = async (credentials) => {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('http://localhost:8000/api/auth/login/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
   // Mock signup function
   const signup = async (userData) => {
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch('http://localhost:8000/api/auth/signup/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
   // Handle login via Google
   const loginWithGoogle = async (credentialResponse) => {
     try {
-      const response = await fetch('/api/auth/google', {
+      const response = await fetch('http://localhost:8000/api/auth/google/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token: credentialResponse.credential }),

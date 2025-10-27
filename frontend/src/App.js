@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import EditorPage from './pages/EditorPage';
 import ProtectedRoute from './components/ProtectedRoute';
-
+// import "./styles/index.css"
 function App() {
   return (
     <Routes>

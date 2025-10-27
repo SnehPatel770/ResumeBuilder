@@ -69,29 +69,125 @@ const SignupPage = () => {
 
   return (
     <AuthLayout>
-      <div className="auth-card">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Join ResumeBuilder</h2>
-        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-          <AuthInput id="name" label="Full Name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" icon={<UserIcon />} error={errors.name} required />
-          <AuthInput id="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" icon={<EmailIcon />} error={errors.email} required />
-          <AuthInput id="password" label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" icon={<LockIcon />} error={errors.password} required />
-          <AuthInput id="confirm-password" label="Confirm Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="••••••••" icon={<LockIcon />} error={errors.confirmPassword} required />
+      <div className="auth-form-card">
+        <h2 className="text-3xl font-bold text-center mb-8">Join ResumeBuilder</h2>
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+              Full Name
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-white">
+                <UserIcon />
+              </div>
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+                className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/50"
+                required
+              />
+            </div>
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-300">{errors.name}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+              Email Address
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-white">
+                <EmailIcon />
+              </div>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/50"
+                required
+              />
+            </div>
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-300">{errors.email}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+              Password
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-white">
+                <LockIcon />
+              </div>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/50"
+                required
+              />
+            </div>
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-300">{errors.password}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="confirm-password" className="block text-sm font-medium text-white mb-2">
+              Confirm Password
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-white">
+                <LockIcon />
+              </div>
+              <input
+                id="confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/50"
+                required
+              />
+            </div>
+            {errors.confirmPassword && (
+              <p className="mt-1 text-sm text-red-300">{errors.confirmPassword}</p>
+            )}
+          </div>
 
           {errors.form && (
-            <div className="auth-error" role="alert">
+            <div className="text-sm text-red-300 bg-red-500/20 p-3 rounded-lg border border-red-500/30" role="alert">
               {errors.form}
             </div>
           )}
 
-          <button type="submit" className="w-full btn btn-primary !mt-6" disabled={isLoading}>
+          <button
+            type="submit"
+            className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            disabled={isLoading}
+          >
             {isLoading ? 'Creating Account...' : 'Sign Up'}
           </button>
 
-          <div className="auth-divider">
-            <span>OR</span>
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/30"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-transparent text-white/70">OR</span>
+            </div>
           </div>
 
-          <div className="google-login-container">
+          <div className="w-full">
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
               onError={() => console.log('Signup Failed')}
@@ -103,9 +199,9 @@ const SignupPage = () => {
             />
           </div>
         </form>
-        <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-6">
+        <p className="text-sm text-center text-white/70 mt-8">
           Already have an account?{' '}
-          <Link to="/login" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+          <Link to="/login" className="font-medium text-blue-300 hover:text-blue-200 transition-colors">
             Log In
           </Link>
         </p>

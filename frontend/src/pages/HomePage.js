@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import * as THREE from 'three';
 import NET from 'vanta/dist/vanta.net.min';
-import '../styles/App.css';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HomePage = () => {
+  const { theme, toggleTheme } = useTheme();
   const [vantaEffect, setVantaEffect] = useState(0);
   const vantaRef = useRef(null);
 
@@ -34,6 +35,14 @@ const HomePage = () => {
         <header className="App-header">
           <h1>Resume Builder</h1>
           <nav>
+            <button
+              onClick={toggleTheme}
+              className="nav-button"
+              style={{ marginRight: '10px' }}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
             <Link to="/login"><button className="nav-button">Login</button></Link>
             <Link to="/signup"><button className="nav-button signup">Sign Up</button></Link>
           </nav>

@@ -13,13 +13,15 @@ const AuthInput = ({ id, label, type = 'text', icon, error, ...props }) => {
     <div>
       <label htmlFor={id} className="auth-label">{label}</label>
       <div className="relative">
-        <div className="auth-icon">
-          {icon}
-        </div>
+        {icon && (
+          <div className="auth-icon">
+            {icon}
+          </div>
+        )}
         <input
           id={id}
           type={inputType}
-          className={`auth-input pl-10 ${error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'}`}
+          className={`auth-input ${icon ? 'pl-10' : ''} ${error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'}`}
           {...props}
         />
         {isPassword && (
