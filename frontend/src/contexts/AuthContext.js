@@ -62,30 +62,41 @@ export const AuthProvider = ({ children }) => {
 
   const handleGoogleResponse = async (response) => {
     try {
-      // Decode JWT token
-      const userInfo = JSON.parse(atob(response.credential.split('.')[1]));
-      
-      const userData = {
-        id: userInfo.sub,
-        email: userInfo.email,
-        name: userInfo.name,
-        picture: userInfo.picture,
-        token: response.credential
-      };
-
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
+      console.log('Google response received:', response);
       
       // Send to backend for verification/storage
-      await fetch('http://localhost:8000/api/auth/google/', {
+      const backendResponse = await fetch('http://localhost:8000/api/auth/google/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ token: response.credential }),
       });
+
+      if (backendResponse.ok) {
+        const data = await backendResponse.json();
+        console.log('Backend response:', data);
+        
+        const userData = {
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.name,
+          picture: data.user.picture,
+          token: response.credential
+        };
+
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+        
+        // Redirect to home page
+        window.location.href = '/';
+      } else {
+        console.error('Backend authentication failed');
+        alert('Authentication failed. Please try again.');
+      }
     } catch (error) {
       console.error('Authentication failed:', error);
+      alert('Authentication failed. Please try again.');
     }
   };
 

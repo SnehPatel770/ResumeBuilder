@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from '../../components/Header/Header';
+import GoogleSignInButton from '../../components/GoogleSignInButton/GoogleSignInButton';
 import './SignupPage.css';
 
 const SignupPage = () => {
@@ -176,6 +177,15 @@ const SignupPage = () => {
             <button type="submit" className="signup-btn" disabled={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
+            
+            <div className="divider">
+              <span>or</span>
+            </div>
+            
+            <GoogleSignInButton 
+              text="Sign up with Google"
+              onSuccess={() => navigate('/')}
+            />
             
             <div className="divider">
               <span>or</span>

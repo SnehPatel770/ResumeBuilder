@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from '../../components/Header/Header';
+import GoogleSignInButton from '../../components/GoogleSignInButton/GoogleSignInButton';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -129,20 +130,21 @@ const LoginPage = () => {
               <span>or</span>
             </div>
             
+            <GoogleSignInButton 
+              text="Sign in with Google"
+              onSuccess={() => navigate('/')}
+            />
+            
+            <div className="divider">
+              <span>or</span>
+            </div>
+            
             <button 
               type="button"
               onClick={handleDemoLogin} 
               className="demo-login-btn-primary"
             >
               🚀 Demo Login
-            </button>
-            
-            <button 
-              type="button"
-              onClick={testButtonClick} 
-              style={{marginTop: '10px', padding: '10px', background: 'red', color: 'white'}}
-            >
-              TEST BUTTON
             </button>
           </form>
           
