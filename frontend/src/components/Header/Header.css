@@ -1,0 +1,148 @@
+.header {
+  background: var(--bg-primary);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  color: var(--accent-color);
+  margin: 0;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+}
+
+.user-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.auth-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-button.login {
+  background: var(--accent-color);
+  color: white;
+}
+
+.auth-button.login:hover {
+  background: #2980b9;
+}
+
+.auth-button.logout {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.auth-button.logout:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .user-name {
+    display: none;
+  }
+}.au
+th-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.auth-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.auth-button.signup {
+  background: var(--accent-color);
+  color: white;
+}
+
+.auth-button.signup:hover {
+  background: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .auth-buttons {
+    gap: 0.25rem;
+  }
+  
+  .auth-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}

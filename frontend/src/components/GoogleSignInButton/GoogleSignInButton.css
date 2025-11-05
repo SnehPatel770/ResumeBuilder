@@ -1,0 +1,15 @@
+/* Show fallback button if Google button fails to load */
+.google-signin-container:not(:has([data-google-button])) .fallback-google-btn {
+  display: block !important;
+}
+
+/* Style for the Google button container */
+.google-signin-container {
+  width: 100%;
+}
+
+.google-signin-container > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

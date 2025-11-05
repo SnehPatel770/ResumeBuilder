@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# AUTH_USER_MODEL = 'api.User'  # Will be enabled after initial setup
+
+# Google OAuth settings
+GOOGLE_CLIENT_ID = '175026454956-qer1sdfj396apm2jrkneqqijc7p231ft.apps.googleusercontent.com'
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
