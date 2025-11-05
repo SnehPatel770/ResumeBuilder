@@ -17,11 +17,6 @@ const LoginPage = () => {
       navigate('/');
     }
   }, [user, navigate]);
-
-  const testButtonClick = () => {
-    console.log('Test button clicked!');
-    alert('Test button works!');
-  };
   
   const [formData, setFormData] = useState({
     email: '',

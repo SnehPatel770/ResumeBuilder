@@ -27,7 +27,6 @@ const Header = () => {
         </Link>
         
         <nav className="nav">
-          <Link to="/" className="nav-link">Home</Link>
           <Link to="/templates" className="nav-link">Templates</Link>
           <Link to="/themes" className="nav-link">Themes</Link>
           {user && <Link to="/editor" className="nav-link">Editor</Link>}
