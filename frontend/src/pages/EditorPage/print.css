@@ -1,0 +1,126 @@
+/* Print-specific styles for Resume */
+
+@media print {
+  /* Hide everything except the resume */
+  body * {
+    visibility: hidden;
+  }
+  
+  .full-resume-preview,
+  .full-resume-preview * {
+    visibility: visible;
+  }
+  
+  .full-resume-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+  
+  /* Ensure colors print */
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  /* Resume template styling */
+  .resume-template {
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Typography */
+  .resume-header h1 {
+    font-size: 28pt;
+    margin-bottom: 8pt;
+  }
+  
+  .resume-title {
+    font-size: 14pt;
+    margin-bottom: 12pt;
+  }
+  
+  .contact-info {
+    font-size: 10pt;
+  }
+  
+  .resume-section h3 {
+    font-size: 16pt;
+    margin-top: 12pt;
+    margin-bottom: 8pt;
+  }
+  
+  .resume-section p,
+  .resume-section li {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  
+  .experience-item h4,
+  .education-item h4,
+  .project-item h4 {
+    font-size: 12pt;
+  }
+  
+  /* Avoid page breaks inside elements */
+  .resume-section,
+  .experience-item,
+  .education-item,
+  .project-item {
+    page-break-inside: avoid;
+  }
+  
+  /* Skills styling */
+  .skill-tag {
+    display: inline-block;
+    padding: 4pt 8pt;
+    margin: 2pt;
+    border: 1px solid #3498db;
+    border-radius: 3pt;
+  }
+  
+  /* Links */
+  a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+  
+  /* Hide modal overlays and buttons */
+  .preview-overlay,
+  .modal-header,
+  .preview-actions,
+  .close-btn,
+  button {
+    display: none !important;
+  }
+}
+
+/* Screen-only styles for preview */
+@media screen {
+  .full-resume-preview {
+    background: white;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 210mm;
+    margin: 0 auto;
+  }
+}

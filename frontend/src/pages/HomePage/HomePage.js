@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthContext';
-import { useTheme } from './contexts/ThemeContext';
-import Header from './components/Header/Header';
-import './pages/HomePage/HomePage.css';
+import { useAuth } from '../../contexts/AuthContext';
+import { useTheme } from '../../contexts/ThemeContext';
+import Header from '../../components/Header/Header';
+import './HomePage.css';
 
 const HomePage = () => {
   const { user, setUser } = useAuth();

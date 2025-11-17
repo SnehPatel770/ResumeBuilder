@@ -1,154 +1,143 @@
-# Resume Builder - Batch Scripts
+# Scripts Directory
 
-Complete automation scripts for Windows development workflow.
+Utility scripts for managing the Resume Builder project.
 
-## Quick Start
+## Essential Scripts
 
-```cmd
-# First time setup
-scripts\create-venv.bat
-scripts\setup.bat
-scripts\create-superuser.bat
+### Development
+- **start-all.bat** - Start both backend and frontend servers
+- **start-backend.bat** - Start Django development server
+- **start-frontend.bat** - Start React development server
 
-# Start development
-scripts\start-all.bat
-```
+### Setup
+- **setup.bat** - Complete project setup (run once)
+- **install-backend.bat** - Install Python dependencies
+- **install-frontend.bat** - Install Node dependencies
+- **create-venv.bat** - Create Python virtual environment
 
-## All Available Scripts
+### Database
+- **migrate.bat** - Run database migrations
+- **reset-db.bat** - Reset database (⚠️ deletes all data)
+- **create-superuser.bat** - Create Django admin user
+- **shell.bat** - Open Django shell
 
-### 🚀 Setup Scripts
+### Utilities
+- **clean.bat** - Clean build files and caches
+- **build-frontend.bat** - Build production frontend
+- **check-env.bat** - Verify environment setup
+- **help.bat** - Show all available scripts
 
-| Script | Purpose |
-|--------|---------|
-| `setup.bat` | Complete project setup (dependencies + migrations) |
-| `create-venv.bat` | Create Python virtual environment |
-| `install-backend.bat` | Install backend dependencies only |
-| `install-frontend.bat` | Install frontend dependencies only |
-| `check-env.bat` | Check environment and dependencies |
+## Usage
 
-### 💻 Development Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `start-backend.bat` | Start Django server (port 8000) |
-| `start-frontend.bat` | Start React server (port 3000) |
-| `start-all.bat` | Start both servers in separate windows |
-| `shell.bat` | Open Django shell |
-
-### 🗄️ Database Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `migrate.bat` | Run database migrations |
-| `reset-db.bat` | Reset database (delete and recreate) |
-| `create-superuser.bat` | Create Django admin user |
-
-### 🏗️ Build Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `build-frontend.bat` | Build React for production |
-| `collectstatic.bat` | Collect Django static files |
-
-### 🧪 Testing Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `test-backend.bat` | Run Django tests |
-| `test-frontend.bat` | Run React tests |
-| `lint-frontend.bat` | Run ESLint on frontend |
-
-### 🧹 Maintenance Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `clean.bat` | Clean all build artifacts and caches |
-| `help.bat` | Show all available scripts |
-
-## Usage Examples
-
-### Initial Setup
-```cmd
-# Create virtual environment
-scripts\create-venv.bat
-
-# Install all dependencies and run migrations
+### First Time Setup
+```bash
+# Run complete setup
 scripts\setup.bat
 
-# Create admin user
-scripts\create-superuser.bat
+# Or step by step:
+scripts\create-venv.bat
+scripts\install-backend.bat
+scripts\install-frontend.bat
+scripts\migrate.bat
 ```
 
 ### Daily Development
-```cmd
+```bash
 # Start both servers
 scripts\start-all.bat
 
-# Or start individually
-scripts\start-backend.bat
-scripts\start-frontend.bat
+# Or separately:
+scripts\start-backend.bat  # Terminal 1
+scripts\start-frontend.bat # Terminal 2
 ```
 
 ### Database Management
-```cmd
-# Apply new migrations
+```bash
+# After model changes
 scripts\migrate.bat
 
-# Reset database completely
+# Create admin user
+scripts\create-superuser.bat
+
+# Reset database (careful!)
 scripts\reset-db.bat
 ```
 
-### Testing
-```cmd
-# Run backend tests
-scripts\test-backend.bat
+### Maintenance
+```bash
+# Clean build files
+scripts\clean.bat
 
-# Run frontend tests
-scripts\test-frontend.bat
-
-# Lint frontend code
-scripts\lint-frontend.bat
-```
-
-### Production Build
-```cmd
-# Build frontend for production
-scripts\build-frontend.bat
-
-# Collect static files
-scripts\collectstatic.bat
-```
-
-### Troubleshooting
-```cmd
-# Check environment status
+# Check environment
 scripts\check-env.bat
 
-# Clean and rebuild
-scripts\clean.bat
-scripts\setup.bat
+# Build for production
+scripts\build-frontend.bat
 ```
 
-## Script Features
+## Script Details
 
-- ✅ Error checking and validation
-- ✅ Clear status messages
-- ✅ Automatic virtual environment activation
-- ✅ Dependency verification
-- ✅ User confirmations for destructive operations
-- ✅ Helpful error messages with solutions
+### start-all.bat
+Starts both backend and frontend servers in separate windows.
+- Backend: http://localhost:8000
+- Frontend: http://localhost:3000
 
-## Access Points
+### setup.bat
+Complete project setup including:
+- Virtual environment creation
+- Dependency installation
+- Database setup
+- Directory creation
 
-After starting the servers:
+### migrate.bat
+Runs Django migrations:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **Django Admin**: http://localhost:8000/admin
+### reset-db.bat
+⚠️ **Warning**: Deletes all data!
+- Deletes db.sqlite3
+- Runs fresh migrations
+- Use only for development
+
+### clean.bat
+Removes:
+- Python cache files (__pycache__)
+- Build directories
+- Temporary files
+
+## Troubleshooting
+
+### Script won't run
+- Check you're in project root directory
+- Ensure virtual environment is activated
+- Run `scripts\check-env.bat` to verify setup
+
+### Backend won't start
+- Check Python version: `python --version`
+- Activate venv: `venv\Scripts\activate`
+- Install deps: `scripts\install-backend.bat`
+- Run migrations: `scripts\migrate.bat`
+
+### Frontend won't start
+- Check Node version: `node --version`
+- Install deps: `scripts\install-frontend.bat`
+- Clear cache: `npm cache clean --force`
+
+## Adding New Scripts
+
+When creating new scripts:
+1. Use `.bat` extension for Windows
+2. Add error handling
+3. Add descriptive echo messages
+4. Update this README
+5. Add to help.bat
 
 ## Notes
 
-- All scripts should be run from the project root or scripts directory
+- All scripts assume you're in the project root directory
+- Scripts use relative paths
 - Virtual environment is automatically activated when needed
-- Scripts check for required dependencies before running
-- Destructive operations (clean, reset-db) require confirmation
+- Check `help.bat` for quick reference

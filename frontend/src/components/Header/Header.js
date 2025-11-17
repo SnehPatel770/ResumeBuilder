@@ -28,7 +28,7 @@ const Header = () => {
         
         <nav className="nav">
           <Link to="/templates" className="nav-link">Templates</Link>
-          <Link to="/themes" className="nav-link">Themes</Link>
+          {/* <Link to="/themes" className="nav-link">Themes</Link> */}
           {user && <Link to="/editor" className="nav-link">Editor</Link>}
           {user && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
         </nav>

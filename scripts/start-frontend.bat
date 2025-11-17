@@ -25,5 +25,6 @@ echo Starting React server on http://localhost:3000
 echo Press Ctrl+C to stop the server
 echo.
 cd ..\frontend
+set NODE_OPTIONS=--no-deprecation
 call npm run dev
 cd ..
