@@ -1,0 +1,668 @@
+/* ========================================
+   RESUME TEMPLATE STYLES
+   All 12 Professional Templates
+   ======================================== */
+
+/* Base Template Styles */
+.resume-template {
+  padding: 1.5rem;
+  background: #ffffff !important;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1.5;
+  border: none !important;
+  width: 100%;
+  font-size: 12px;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0 0 0.8rem 0;
+  border-bottom: 2px solid var(--template-primary, #3498db);
+  background: transparent !important;
+}
+
+.resume-header h1 {
+  color: var(--template-primary, #3498db) !important;
+  font-size: 1.8em;
+  margin: 0 0 0.3rem 0;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  display: block;
+  visibility: visible;
+}
+
+.resume-title {
+  color: #555 !important;
+  font-size: 1.1em;
+  margin: 0 0 0.6rem 0;
+  font-weight: 500;
+  display: block;
+  visibility: visible;
+}
+
+.contact-info {
+  display: flex !important;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+  color: #666 !important;
+  visibility: visible;
+}
+
+.contact-info span {
+  display: inline-block !important;
+  color: #666 !important;
+  visibility: visible;
+}
+
+.resume-section {
+  margin-bottom: 1.2rem;
+  background: transparent !important;
+  display: block;
+  visibility: visible;
+}
+
+.resume-section h3 {
+  color: var(--template-primary, #3498db) !important;
+  font-size: 1.2em;
+  margin: 0 0 0.6rem 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: block;
+  visibility: visible;
+}
+
+.resume-section p {
+  color: #34495e !important;
+  font-size: 1em;
+  display: block;
+  visibility: visible;
+}
+
+.experience-item, .education-item, .project-item {
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.experience-item h4, .education-item h4, .project-item h4 {
+  color: #2c3e50;
+  margin-bottom: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.company {
+  color: #7f8c8d;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.experience-item p, .education-item p, .project-item p {
+  color: #34495e;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skill-tag {
+  background: var(--template-primary, #3498db);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(52, 152, 219, 0.3);
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.skill-tag:hover {
+  transform: translateY(-1px);
+}
+
+.project-link a {
+  color: var(--template-primary, #667eea);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.project-link a:hover {
+  color: var(--template-accent, #764ba2);
+  text-decoration: underline;
+}
+
+/* ========================================
+   TEMPLATE 1: MODERN PROFESSIONAL
+   ======================================== */
+.template-modern .resume-header {
+  border-bottom: 2px solid var(--template-primary);
+}
+
+.template-modern .resume-section h3 {
+  border-bottom: 1px solid var(--template-accent);
+}
+
+/* ========================================
+   TEMPLATE 2: CLASSIC TRADITIONAL
+   ======================================== */
+.template-classic .resume-header {
+  border-bottom: 3px solid var(--template-primary);
+}
+
+.template-classic .resume-section h3 {
+  text-transform: none;
+  font-weight: 700;
+}
+
+/* ========================================
+   TEMPLATE 3: CREATIVE DESIGNER
+   ======================================== */
+.template-creative .resume-header {
+  background: linear-gradient(135deg, var(--template-primary) 0%, var(--template-secondary) 100%);
+  color: white;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+
+.template-creative .resume-header h1,
+.template-creative .resume-title,
+.template-creative .contact-info,
+.template-creative .contact-info span {
+  color: white !important;
+}
+
+.template-creative .resume-section h3 {
+  color: var(--template-primary) !important;
+  border-left: 4px solid var(--template-accent);
+  padding-left: 1rem;
+  border-bottom: none;
+}
+
+/* ========================================
+   TEMPLATE 4: MINIMAL CLEAN
+   ======================================== */
+.template-minimal .resume-header {
+  border-bottom: 2px solid var(--template-primary);
+}
+
+.template-minimal .resume-section h3 {
+  border-bottom: none;
+  border-left: 3px solid var(--template-accent);
+  padding-left: 1rem;
+}
+
+.template-minimal .skill-tag {
+  background: transparent;
+  color: var(--template-primary);
+  border: 1px solid var(--template-primary);
+}
+
+/* ========================================
+   TEMPLATE 5: EXECUTIVE PROFESSIONAL
+   ======================================== */
+.template-executive .resume-header {
+  border-bottom: 3px solid var(--template-primary);
+}
+
+.template-executive .resume-section h3 {
+  background: var(--template-primary);
+  color: white !important;
+  padding: 0.4rem 1rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  border-bottom: none;
+}
+
+/* ========================================
+   TEMPLATE 6: TECH DEVELOPER
+   ======================================== */
+.template-tech .resume-header {
+  background: var(--template-background);
+  border-bottom: 3px solid var(--template-primary);
+}
+
+.template-tech .resume-section h3 {
+  color: var(--template-primary) !important;
+  border-left: 4px solid var(--template-accent);
+  padding-left: 1rem;
+  border-bottom: none;
+}
+
+.template-tech .skill-tag {
+  background: var(--template-accent);
+  border-radius: 6px;
+}
+
+/* ========================================
+   TEMPLATE 7: BOLD MODERN (NEW)
+   ======================================== */
+.template-bold .resume-header {
+  background: linear-gradient(135deg, var(--template-primary) 0%, var(--template-secondary) 100%);
+  color: white;
+  padding: 2rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  border-radius: 8px 8px 0 0;
+  text-align: left;
+  border-bottom: none;
+}
+
+.template-bold .resume-header h1 {
+  color: white !important;
+  font-size: 2.5em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.template-bold .resume-title {
+  color: var(--template-accent) !important;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.template-bold .contact-info,
+.template-bold .contact-info span {
+  color: rgba(255, 255, 255, 0.9) !important;
+  justify-content: flex-start;
+}
+
+.template-bold .resume-section h3 {
+  background: var(--template-primary);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  margin: 0 -1.5rem 1rem -1.5rem;
+  border-bottom: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.template-bold .skill-tag {
+  background: var(--template-secondary);
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+}
+
+/* ========================================
+   TEMPLATE 8: CORPORATE BLUE (NEW)
+   ======================================== */
+.template-corporate .resume-header {
+  border-bottom: 4px solid var(--template-primary);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.template-corporate .resume-header h1 {
+  color: var(--template-primary) !important;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.template-corporate .resume-title {
+  color: var(--template-secondary) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95em;
+}
+
+.template-corporate .resume-section h3 {
+  background: var(--template-primary);
+  color: white !important;
+  padding: 0.4rem 1rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  border-bottom: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+
+.template-corporate .experience-item h4,
+.template-corporate .education-item h4 {
+  color: var(--template-secondary);
+  font-weight: 700;
+}
+
+.template-corporate .skill-tag {
+  background: var(--template-secondary);
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ========================================
+   TEMPLATE 9: ELEGANT SERIF (NEW)
+   ======================================== */
+.template-elegant .resume-template {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.7;
+  background: var(--template-background) !important;
+}
+
+.template-elegant .resume-header {
+  border-bottom: 3px double var(--template-accent);
+  padding-bottom: 1.5rem;
+}
+
+.template-elegant .resume-header h1 {
+  color: var(--template-primary) !important;
+  font-size: 2.8em;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: 'Georgia', serif;
+}
+
+.template-elegant .resume-title {
+  color: var(--template-secondary) !important;
+  font-style: italic;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.template-elegant .resume-section h3 {
+  color: var(--template-primary) !important;
+  font-size: 1.4em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--template-accent);
+  padding-bottom: 0.4rem;
+  font-family: 'Georgia', serif;
+}
+
+.template-elegant .experience-item h4,
+.template-elegant .education-item h4 {
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.template-elegant .skill-tag {
+  background: transparent;
+  color: var(--template-primary);
+  border: 1.5px solid var(--template-accent);
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+/* ========================================
+   TEMPLATE 10: GRADIENT CREATIVE (NEW)
+   ======================================== */
+.template-gradient .resume-header {
+  background: linear-gradient(135deg, var(--template-primary) 0%, var(--template-secondary) 50%, var(--template-accent) 100%);
+  color: white;
+  padding: 2.5rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: none;
+}
+
+.template-gradient .resume-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+}
+
+.template-gradient .resume-header h1 {
+  color: white !important;
+  font-size: 2.5em;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.template-gradient .resume-title {
+  color: white !important;
+  font-weight: 500;
+  font-size: 1.2em;
+  position: relative;
+  z-index: 1;
+}
+
+.template-gradient .contact-info,
+.template-gradient .contact-info span {
+  color: rgba(255, 255, 255, 0.95) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.template-gradient .resume-section h3 {
+  background: linear-gradient(135deg, var(--template-primary), var(--template-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1.4em;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, var(--template-primary), var(--template-secondary)) 1;
+}
+
+.template-gradient .skill-tag {
+  background: linear-gradient(135deg, var(--template-primary), var(--template-secondary));
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* ========================================
+   TEMPLATE 11: COMPACT PROFESSIONAL (NEW)
+   ======================================== */
+.template-compact .resume-template {
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 1.2rem;
+}
+
+.template-compact .resume-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--template-primary);
+}
+
+.template-compact .resume-header h1 {
+  font-size: 2em;
+  margin-bottom: 0.2rem;
+  color: var(--template-primary) !important;
+}
+
+.template-compact .resume-title {
+  font-size: 1em;
+  margin-bottom: 0.4rem;
+  color: var(--template-secondary) !important;
+}
+
+.template-compact .contact-info {
+  font-size: 0.85em;
+  gap: 0.8rem;
+}
+
+.template-compact .resume-section {
+  margin-bottom: 1rem;
+}
+
+.template-compact .resume-section h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
+  color: var(--template-primary) !important;
+}
+
+.template-compact .experience-item,
+.template-compact .education-item {
+  margin-bottom: 0.8rem;
+}
+
+.template-compact .experience-item h4,
+.template-compact .education-item h4 {
+  font-size: 0.95em;
+  margin-bottom: 0.1rem;
+}
+
+.template-compact .company {
+  font-size: 0.85em;
+  margin-bottom: 0.2rem;
+}
+
+.template-compact .skill-tag {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8em;
+  border-radius: 3px;
+}
+
+/* ========================================
+   TEMPLATE 12: COLORFUL MODERN (NEW)
+   ======================================== */
+.template-colorful .resume-header {
+  background: linear-gradient(135deg, var(--template-primary) 0%, var(--template-secondary) 100%);
+  color: white;
+  padding: 2rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+}
+
+.template-colorful .resume-header h1 {
+  color: white !important;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.template-colorful .resume-title {
+  color: white !important;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.template-colorful .contact-info,
+.template-colorful .contact-info span {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.template-colorful .resume-section h3 {
+  color: var(--template-primary) !important;
+  font-weight: 700;
+  font-size: 1.3em;
+  border-left: 4px solid var(--template-accent);
+  padding-left: 1rem;
+  border-bottom: none;
+}
+
+.template-colorful .experience-item h4,
+.template-colorful .education-item h4,
+.template-colorful .project-item h4 {
+  color: var(--template-secondary);
+  font-weight: 700;
+}
+
+.template-colorful .skill-tag {
+  background: var(--template-primary);
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(233, 30, 99, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.template-colorful .skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.4);
+}
+
+/* ========================================
+   FULL PREVIEW MODAL STYLES
+   ======================================== */
+.full-resume-preview .resume-template {
+  padding: 3rem;
+  color: var(--template-text, #000000);
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.full-resume-preview .template-bold .resume-header,
+.full-resume-preview .template-gradient .resume-header,
+.full-resume-preview .template-colorful .resume-header,
+.full-resume-preview .template-creative .resume-header {
+  margin: -3rem -3rem 2.5rem -3rem;
+  padding: 3rem;
+}
+
+.full-resume-preview .template-bold .resume-section h3,
+.full-resume-preview .template-corporate .resume-section h3,
+.full-resume-preview .template-executive .resume-section h3 {
+  margin-left: -3rem;
+  margin-right: -3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.full-resume-preview .template-compact .resume-template {
+  padding: 2rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+  .template-bold .resume-section h3,
+  .template-corporate .resume-section h3,
+  .template-executive .resume-section h3 {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .template-bold .resume-header,
+  .template-gradient .resume-header,
+  .template-colorful .resume-header,
+  .template-creative .resume-header {
+    margin: -1rem -1rem 1rem -1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* ========================================
+   PRINT OPTIMIZATION
+   ======================================== */
+@media print {
+  .template-bold .resume-header,
+  .template-gradient .resume-header,
+  .template-colorful .resume-header,
+  .template-creative .resume-header,
+  .template-corporate .resume-section h3,
+  .template-executive .resume-section h3 {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  
+  .template-gradient .resume-section h3 {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .resume-section {
+    page-break-inside: avoid;
+  }
+}
