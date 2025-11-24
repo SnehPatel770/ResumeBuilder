@@ -22,7 +22,7 @@ const TemplatesPage = () => {
         id: 'guest-user',
         email: 'guest@resumebuilder.com',
         name: 'Guest User',
-        picture: 'https://ui-avatars.com/api/?name=Guest+User&background=3fa6ff&color=fff',
+        picture: 'https://robohash.org/guest@resumebuilder.com?set=set1&size=200x200',
         token: 'guest-token'
       };
       

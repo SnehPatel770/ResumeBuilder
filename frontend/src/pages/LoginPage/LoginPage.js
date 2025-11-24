@@ -47,7 +47,7 @@ const LoginPage = () => {
           id: data.user.id,
           email: data.user.email,
           name: `${data.user.first_name} ${data.user.last_name}`.trim(),
-          picture: `https://ui-avatars.com/api/?name=${encodeURIComponent(data.user.first_name + ' ' + data.user.last_name)}&background=3fa6ff&color=fff`,
+          picture: `https://robohash.org/${data.user.email}?set=set1&size=200x200`,
           token: data.token
         };
         
@@ -71,7 +71,7 @@ const LoginPage = () => {
       id: 'demo-user',
       email: 'demo@example.com',
       name: 'Demo User',
-      picture: 'https://ui-avatars.com/api/?name=Demo+User&background=3fa6ff&color=fff',
+      picture: 'https://robohash.org/demo@example.com?set=set1&size=200x200',
       token: 'demo-token'
     };
     
