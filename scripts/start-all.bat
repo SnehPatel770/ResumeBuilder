@@ -33,7 +33,7 @@ echo Waiting 3 seconds for backend to initialize...
 timeout /t 3 /nobreak >nul
 
 echo Starting Frontend Server...
-start "React Frontend" cmd /k "cd /d %~dp0.. && call venv\Scripts\activate.bat && cd ..\frontend && set NODE_OPTIONS=--no-deprecation && npm run dev"
+start "React Frontend" cmd /k "cd /d %~dp0.. && call venv\Scripts\activate.bat && cd frontend && set NODE_OPTIONS=--no-deprecation && npm run dev"
 
 echo.
 echo ============================================

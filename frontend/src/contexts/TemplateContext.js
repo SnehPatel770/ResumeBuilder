@@ -118,6 +118,168 @@ const templates = {
       type: 'two-column',
       sections: ['header', 'summary', 'technical-skills', 'experience', 'projects', 'education']
     }
+  },
+  corporate: {
+    id: 'corporate',
+    name: 'Corporate Business',
+    description: 'Professional design for business and corporate environments',
+    preview: '/templates/corporate-preview.png',
+    category: 'Professional',
+    colors: {
+      primary: '#0f172a',
+      secondary: '#475569',
+      accent: '#1e40af',
+      background: '#ffffff',
+      text: '#1e293b'
+    },
+    layout: {
+      type: 'single-column',
+      sections: ['header', 'summary', 'experience', 'education', 'skills', 'certifications']
+    }
+  },
+  bold: {
+    id: 'bold',
+    name: 'Bold Modern',
+    description: 'Eye-catching design with strong visual hierarchy',
+    preview: '/templates/bold-preview.png',
+    category: 'Creative',
+    colors: {
+      primary: '#dc2626',
+      secondary: '#ef4444',
+      accent: '#f87171',
+      background: '#fafafa',
+      text: '#1f2937'
+    },
+    layout: {
+      type: 'two-column',
+      sections: ['header', 'summary', 'experience', 'skills', 'education', 'achievements']
+    }
+  },
+  elegant: {
+    id: 'elegant',
+    name: 'Elegant Classic',
+    description: 'Refined and sophisticated design with classic typography',
+    preview: '/templates/elegant-preview.png',
+    category: 'Traditional',
+    colors: {
+      primary: '#4a5568',
+      secondary: '#718096',
+      accent: '#2d3748',
+      background: '#ffffff',
+      text: '#2d3748'
+    },
+    layout: {
+      type: 'single-column',
+      sections: ['header', 'summary', 'experience', 'education', 'skills', 'awards']
+    }
+  },
+  gradient: {
+    id: 'gradient',
+    name: 'Gradient Creative',
+    description: 'Modern design with beautiful gradient accents',
+    preview: '/templates/gradient-preview.png',
+    category: 'Creative',
+    colors: {
+      primary: '#6366f1',
+      secondary: '#8b5cf6',
+      accent: '#a855f7',
+      background: '#ffffff',
+      text: '#1e293b'
+    },
+    layout: {
+      type: 'two-column',
+      sections: ['header', 'summary', 'experience', 'skills', 'projects', 'education']
+    }
+  },
+  compact: {
+    id: 'compact',
+    name: 'Compact Professional',
+    description: 'Space-efficient design that fits more content on one page',
+    preview: '/templates/compact-preview.png',
+    category: 'Professional',
+    colors: {
+      primary: '#0369a1',
+      secondary: '#0284c7',
+      accent: '#0ea5e9',
+      background: '#ffffff',
+      text: '#0f172a'
+    },
+    layout: {
+      type: 'two-column',
+      sections: ['header', 'summary', 'experience', 'education', 'skills', 'certifications']
+    }
+  },
+  colorful: {
+    id: 'colorful',
+    name: 'Colorful Vibrant',
+    description: 'Energetic design with vibrant colors for creative fields',
+    preview: '/templates/colorful-preview.png',
+    category: 'Creative',
+    colors: {
+      primary: '#f59e0b',
+      secondary: '#ec4899',
+      accent: '#8b5cf6',
+      background: '#fefce8',
+      text: '#1f2937'
+    },
+    layout: {
+      type: 'two-column',
+      sections: ['header', 'summary', 'experience', 'skills', 'portfolio', 'education']
+    }
+  },
+  academic: {
+    id: 'academic',
+    name: 'Academic Research',
+    description: 'Formal design for academic and research positions',
+    preview: '/templates/academic-preview.png',
+    category: 'Traditional',
+    colors: {
+      primary: '#1e3a8a',
+      secondary: '#3b82f6',
+      accent: '#60a5fa',
+      background: '#ffffff',
+      text: '#1e293b'
+    },
+    layout: {
+      type: 'single-column',
+      sections: ['header', 'education', 'research', 'publications', 'experience', 'skills']
+    }
+  },
+  startup: {
+    id: 'startup',
+    name: 'Startup Innovator',
+    description: 'Dynamic design for startup and entrepreneurial roles',
+    preview: '/templates/startup-preview.png',
+    category: 'Technology',
+    colors: {
+      primary: '#7c3aed',
+      secondary: '#a78bfa',
+      accent: '#c4b5fd',
+      background: '#fafafa',
+      text: '#1e293b'
+    },
+    layout: {
+      type: 'two-column',
+      sections: ['header', 'summary', 'experience', 'projects', 'skills', 'education']
+    }
+  },
+  medical: {
+    id: 'medical',
+    name: 'Medical Healthcare',
+    description: 'Professional design for healthcare and medical professionals',
+    preview: '/templates/medical-preview.png',
+    category: 'Professional',
+    colors: {
+      primary: '#0891b2',
+      secondary: '#06b6d4',
+      accent: '#22d3ee',
+      background: '#ffffff',
+      text: '#0f172a'
+    },
+    layout: {
+      type: 'single-column',
+      sections: ['header', 'summary', 'experience', 'education', 'certifications', 'skills']
+    }
   }
 };
 

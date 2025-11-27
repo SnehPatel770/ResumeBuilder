@@ -12,14 +12,26 @@ class UserProfile(models.Model):
 
 class Resume(models.Model):
     TEMPLATE_CHOICES = [
-        ('professional', 'Professional'),
-        ('creative', 'Creative'),
-        ('minimal', 'Minimal'),
+        ('modern', 'Modern Professional'),
+        ('classic', 'Classic Traditional'),
+        ('creative', 'Creative Designer'),
+        ('minimal', 'Minimal Clean'),
+        ('executive', 'Executive Professional'),
+        ('tech', 'Tech Developer'),
+        ('corporate', 'Corporate Business'),
+        ('bold', 'Bold Modern'),
+        ('elegant', 'Elegant Classic'),
+        ('gradient', 'Gradient Creative'),
+        ('compact', 'Compact Professional'),
+        ('colorful', 'Colorful Vibrant'),
+        ('academic', 'Academic Research'),
+        ('startup', 'Startup Innovator'),
+        ('medical', 'Medical Healthcare'),
     ]
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='resumes')
     title = models.CharField(max_length=200, default='My Resume')
-    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default='professional')
+    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default='modern')
     data = models.JSONField(default=dict)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
