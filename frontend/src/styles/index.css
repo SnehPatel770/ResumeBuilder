@@ -1,0 +1,440 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Inter font for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base styles with theme support */
+body {
+  @apply transition-colors duration-300;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Light theme */
+body:not(.dark) {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Dark theme */
+body.dark {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Custom component classes with theme support */
+.btn {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed shadow-lg hover:shadow-xl;
+}
+
+.btn-primary:not(:disabled) {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600 disabled:bg-red-400 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+}
+
+/* Auth page styles with theme support */
+.auth-card {
+  @apply p-8 rounded-xl shadow-2xl w-full max-w-md border backdrop-blur-sm;
+  @apply bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+}
+
+.auth-label {
+  @apply block mb-2 text-sm font-medium;
+  @apply text-gray-700 dark:text-gray-300;
+}
+
+.auth-input {
+  @apply w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200;
+  @apply bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400;
+}
+
+.auth-icon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none;
+  @apply text-gray-400 dark:text-gray-500;
+}
+
+.auth-error {
+  @apply text-sm p-3 rounded-lg border;
+  @apply text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-800;
+}
+
+.auth-divider {
+  @apply relative my-6 flex items-center;
+}
+.auth-divider::before, .auth-divider::after {
+  @apply content-[''] flex-grow border-b;
+  @apply border-gray-300 dark:border-gray-600;
+}
+.auth-divider span {
+  @apply mx-4 text-xs font-medium uppercase tracking-wider;
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+/* Google Login Button Styling */
+.google-login-container {
+  @apply w-full;
+}
+
+.google-login-container > div {
+  @apply w-full;
+}
+
+.google-login-container button {
+  @apply w-full !important;
+  @apply bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300;
+}
+
+/* Editor page styles with theme support */
+.form-input {
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200;
+  @apply bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400;
+}
+
+.form-section {
+  @apply p-4 rounded-lg border mb-4;
+  @apply bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+}
+
+.preview-heading {
+  @apply text-lg font-semibold mb-2 border-b pb-1;
+  @apply text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600;
+}
+
+/* Auth Layout with gradient background and theme support */
+.auth-layout-branding {
+  @apply text-white;
+  @apply bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-gray-800 dark:via-gray-900 dark:to-black;
+}
+
+.auth-layout-branding h1 {
+  @apply text-6xl font-bold mb-4 drop-shadow-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent;
+}
+
+.auth-layout-branding p {
+  @apply text-xl text-gray-300;
+}
+
+/* Home page styles */
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.App-header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-button.signup {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+.nav-button.signup:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.App-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.cta-button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.features {
+  margin-bottom: 4rem;
+}
+
+.features h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.testimonials {
+  margin-bottom: 4rem;
+}
+
+.testimonials h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.testimonial-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.testimonial p {
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.testimonial cite {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.App-footer {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+  color: white;
+}
+
+/* Auth page styles matching home page theme */
+.auth-page-bg {
+  @apply min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900;
+}
+
+.auth-form-card {
+  @apply bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20 shadow-2xl text-white;
+}
+
+/* Editor page styles matching home page theme */
+.editor-bg {
+  @apply min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white;
+}
+
+.editor-panel {
+  @apply bg-white/10 backdrop-blur-md rounded-lg shadow-md p-6 border border-white/20;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .App-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .App-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .App-main {
+    padding: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-cards,
+  .testimonial-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

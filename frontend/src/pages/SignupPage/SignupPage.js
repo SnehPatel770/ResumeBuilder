@@ -99,9 +99,11 @@ const SignupPage = () => {
     localStorage.setItem('user', JSON.stringify(demoUser));
     navigate('/');
   };
+  // Some dimentions fixed that disturb the application on frontend
 
   return (
     <>
+    
       <Header />
       <div className={`signup-container ${theme}`}>
         <div className="signup-card">

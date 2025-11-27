@@ -64,7 +64,7 @@ const LoginPage = () => {
       setLoading(false);
     }
   };
-
+   //added some functionality in this file 
   const handleDemoLogin = () => {
     console.log('Demo login button clicked!');
     const demoUser = {

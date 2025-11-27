@@ -1,0 +1,83 @@
+/* --- LOGIN CARD CONTAINER --- */
+.login-card {
+    /* Corresponds to: p-10 bg-gray-800/70 backdrop-blur-md rounded-xl shadow-2xl w-full max-w-md */
+    padding: 2.5rem; /* p-10 */
+    background-color: rgba(31, 41, 55, 0.7); /* bg-gray-800/70 */
+    backdrop-filter: blur(12px); /* backdrop-blur-md */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05); /* shadow-2xl */
+    width: 100%;
+    max-width: 28rem; /* max-w-md */
+}
+
+/* --- HEADING --- */
+.login-heading {
+    /* Corresponds to: text-3xl font-bold text-center mb-8 */
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+/* --- INPUT FIELDS --- */
+.login-input {
+    /* Corresponds to: w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 */
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem; /* pl-12, pr-4, py-3 */
+    background-color: rgba(255, 255, 255, 0.2); /* bg-white/20 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* border-white/30 */
+    border-radius: 0.5rem; /* rounded-lg */
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-input::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* placeholder-white/50 */
+}
+
+.login-input:focus {
+    /* Corresponds to: focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- SUBMIT BUTTON --- */
+.login-button {
+    /* Corresponds to: w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-purple-600 ... */
+    width: 100%;
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    color: white;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #3b82f6, #9333ea); /* blue-500 to purple-600 */
+    transition: all 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    /* Corresponds to: hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 */
+    background-image: linear-gradient(to right, #2563eb, #7e22ce); /* blue-600 to purple-700 */
+    transform: scale(1.05);
+}
+
+.login-button:disabled {
+    /* Corresponds to: disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none */
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- OR DIVIDER --- */
+.divider-text {
+    /* Corresponds to: px-2 bg-transparent text-white/70 (adjust bg for card color if needed) */
+    padding: 0 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Note: if background is transparent, you need to ensure the parent has the dark background */
+    background-color: inherit; /* Should inherit the card's background color */
+    position: relative;
+    z-index: 10;
+}

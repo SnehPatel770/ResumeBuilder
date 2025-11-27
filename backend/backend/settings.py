@@ -36,6 +36,8 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH = False
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
@@ -50,15 +52,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
-    'api',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'coreapi',
     'corsheaders',
 ]
-
-# AUTH_USER_MODEL = 'api.User'  # Will be enabled after initial setup
-
-# Google OAuth settings
-GOOGLE_CLIENT_ID = '175026454956-qer1sdfj396apm2jrkneqqijc7p231ft.apps.googleusercontent.com'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -68,7 +74,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'allauth.account.middleware.AccountMiddleware', 
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -142,3 +149,51 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+AUTH_USER_MODEL = 'coreapi.User'
+
+SITE_ID = 1 # Must be set for django.contrib.sites
+
+# Django-Allauth settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none' # Set to 'mandatory' for production
+
+# DRF-SimpleJWT Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+# DJ-Rest-Auth Settings (Uses JWT)
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'my-access-token',
+    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+}
+
+# Social Account Provider Config (Get these from Google Cloud Console)
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': 'YOUR_GOOGLE_CLIENT_ID_FROM_GCP', 
+            'secret': 'YOUR_GOOGLE_CLIENT_SECRET_FROM_GCP',
+            # 'key' is not used for this JWT flow
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

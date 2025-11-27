@@ -156,13 +156,13 @@ pip install -r backend/requirements.txt
 # Run migrations
 python backend/manage.py migrate
 ```
-
+  
 ### Frontend won't start
-```bash
+```bash    
 # Check Node version
 node --version  # Need 16+
 
-# Reinstall dependencies
+# Reinstall dependencies for frontend
 cd frontend
 rm -rf node_modules
 npm install
@@ -256,3 +256,7 @@ This project is licensed under the MIT License.
 **Built with ❤️ for job seekers worldwide**
 
 For detailed setup and troubleshooting, see `SETUP.md` and `TROUBLESHOOTING.md`.
+
+
+<!-- This is a test update. -->
+<!-- This is a updates in readme file for future someoned-->

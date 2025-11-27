@@ -1,151 +1,128 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
-const AuthContext = createContext();
+// 1. Create the context
+const AuthContext = createContext(null);
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
-
+/**
+ * 2. Create the AuthProvider component
+ * This component will wrap your application and provide the auth state.
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // To handle initial auth check
 
   useEffect(() => {
-    // Initialize Google Auth
-    const initializeGoogleAuth = async () => {
-      try {
-        // Debug: Check what Client ID is being read
-        console.log('Environment REACT_APP_GOOGLE_CLIENT_ID:', process.env.REACT_APP_GOOGLE_CLIENT_ID);
-        
-        // Check if Google Client ID is configured
-        if (!process.env.REACT_APP_GOOGLE_CLIENT_ID || process.env.REACT_APP_GOOGLE_CLIENT_ID === 'your_google_client_id_here') {
-          console.warn('Google Client ID not configured. Current value:', process.env.REACT_APP_GOOGLE_CLIENT_ID);
-          setLoading(false);
-          return;
+    const initializeAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          // Verify token with the backend
+          const response = await fetch('http://localhost:8000/api/auth/me/', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+          } else {
+            // Token is invalid or expired
+            localStorage.removeItem('token');
+          }
+        } catch (error) {
+          console.error("Failed to verify token:", error);
+          localStorage.removeItem('token');
         }
-
-        console.log('Initializing Google Auth with Client ID:', process.env.REACT_APP_GOOGLE_CLIENT_ID);
-
-        await new Promise((resolve, reject) => {
-          const script = document.createElement('script');
-          script.src = 'https://accounts.google.com/gsi/client';
-          script.onload = resolve;
-          script.onerror = reject;
-          document.head.appendChild(script);
-        });
-
-        window.google.accounts.id.initialize({
-          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-          callback: handleGoogleResponse,
-        });
-
-        console.log('Google Auth initialized successfully');
-
-        // Check for existing session
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-          setUser(JSON.parse(savedUser));
-        }
-      } catch (error) {
-        console.error('Failed to initialize Google Auth:', error);
-      } finally {
-        setLoading(false);
       }
+      setIsLoading(false);
     };
 
-    initializeGoogleAuth();
+    initializeAuth();
   }, []);
 
-  const handleGoogleResponse = async (response) => {
+  // Mock login function that simulates an API call
+  const login = async (credentials) => {
     try {
-      console.log('Google response received:', response);
-      
-      // Send to backend for verification/storage
-      const backendResponse = await fetch('http://localhost:8000/api/auth/google/', {
+      const response = await fetch('http://localhost:8000/api/auth/login/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: response.credential }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
       });
 
-      if (backendResponse.ok) {
-        const data = await backendResponse.json();
-        console.log('Backend response:', data);
-        
-        const userData = {
-          id: data.user.id,
-          email: data.user.email,
-          name: data.user.name,
-          picture: data.user.picture,
-          token: response.credential
-        };
+      const data = await response.json();
 
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-        
-        // Redirect to home page
-        window.location.href = '/';
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        return { success: true };
       } else {
-        console.error('Backend authentication failed');
-        alert('Authentication failed. Please try again.');
+        return { success: false, error: data.message || 'Login failed.' };
       }
     } catch (error) {
-      console.error('Authentication failed:', error);
-      alert('Authentication failed. Please try again.');
+      return { success: false, error: 'Network error. Please try again.' };
     }
   };
 
-  const login = () => {
-    console.log('Login clicked. Client ID:', process.env.REACT_APP_GOOGLE_CLIENT_ID);
-    
-    if (!process.env.REACT_APP_GOOGLE_CLIENT_ID || process.env.REACT_APP_GOOGLE_CLIENT_ID === 'your_google_client_id_here') {
-      alert(`Google Auth not configured yet!\n\nCurrent Client ID: ${process.env.REACT_APP_GOOGLE_CLIENT_ID}\n\nTo fix:\n1. Restart the development server (Ctrl+C then npm run dev)\n2. Check that .env file exists in frontend folder\n3. Ensure no spaces around the = in .env file`);
-      return;
-    }
-    
-    if (window.google && window.google.accounts) {
-      console.log('Prompting Google Auth...');
-      try {
-        // Try the prompt method first
-        window.google.accounts.id.prompt((notification) => {
-          console.log('Google prompt notification:', notification);
-          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-            console.log('Prompt was not displayed or skipped, trying renderButton approach');
-            // If prompt doesn't work, we'll fall back to the button approach
-          }
-        });
-      } catch (error) {
-        console.error('Error with Google prompt:', error);
-        alert('There was an issue with Google Auth. Please try the demo login or check the console for errors.');
+  // Mock signup function
+  const signup = async (userData) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/signup/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        return { success: true };
+      } else {
+        return { success: false, error: data.message || 'Signup failed.' };
       }
-    } else {
-      alert('Google Auth is still loading. Please try again in a moment.');
+    } catch (error) {
+      return { success: false, error: 'Network error. Please try again.' };
     }
   };
 
+  // Handle login via Google
+  const loginWithGoogle = async (credentialResponse) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/google/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: credentialResponse.credential }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        return { success: true };
+      } else {
+        return { success: false, error: data.message || 'Google login failed.' };
+      }
+    } catch (error) {
+      return { success: false, error: 'Network error. Please try again.' };
+    }
+  };
+
+  // Logout function: clears the user object
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
-    window.google.accounts.id.disableAutoSelect();
+    localStorage.removeItem('token');
   };
 
-  const value = {
-    user,
-    setUser,
-    login,
-    logout,
-    loading,
-    handleGoogleResponse
-  };
+  const value = { user, isLoading, login, signup, loginWithGoogle, logout, isAuthenticated: !!user };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+/**
+ * 3. Create a custom hook for easy access to the context
+ */
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

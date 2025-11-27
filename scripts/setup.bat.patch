@@ -1,0 +1,34 @@
+=======
+if not exist "venv\Scripts\activate.bat" (
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+call ..\venv\Scripts\activate.bat
+=======
+call venv\Scripts\activate.bat
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+cd ..\backend
+pip install -r requirements.txt
+=======
+cd backend
+pip install -r requirements.txt
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+cd ..\frontend
+call npm i -f
+=======
+cd frontend
+call npm i -f
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+cd ..\backend
+python manage.py makemigrations
+python manage.py migrate
+=======
+cd backend
+python manage.py makemigrations
+python manage.py migrate
